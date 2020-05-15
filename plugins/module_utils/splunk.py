@@ -76,12 +76,14 @@ class SplunkRequest(object):
             self.module.fail_json(msg="certificate error occurred: {0}".format(e))
         except ValueError as e:
             self.module.fail_json(msg="certificate not found: {0}".format(e))
-
+        
         if code == 404:
             if to_text(u"Object not found") in to_text(response) or to_text(
                 u"Could not find object"
             ) in to_text(response):
                 return {}
+            elif to_text(u"previousActive bundle not available") in to_text(response) or to_text(u"No new bundle will be pushed") in to_text(response):
+                return { 'messages': [{'text': response["messages"][0]["text"], 'type': 'NO_CHANGED'}] }
 
         if not (code >= 200 and code < 300):
             self.module.fail_json(
