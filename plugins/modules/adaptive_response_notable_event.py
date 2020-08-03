@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # https://github.com/ansible/ansible/issues/65816
 # https://github.com/PyCQA/pylint/issues/214
-# pylint: skip-file
 
 # (c) 2018, Adam Miller (admiller@redhat.com)
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -10,14 +9,6 @@
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
-
-
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 
 DOCUMENTATION = """
 ---
@@ -27,7 +18,7 @@ description:
   - This module allows for creation, deletion, and modification of Splunk
     Enterprise Security Notable Event Adaptive Responses that are associated
     with a correlation search
-version_added: "1.0"
+version_added: "1.0.0"
 options:
   name:
     description:
@@ -172,6 +163,18 @@ author: Ansible Security Automation Team (@maxamillion) <https://github.com/ansi
 # FIXME - adaptive response action association is probaby going to need to be a separate module we stitch together in a role
 
 EXAMPLES = """
+- name: Example of using splunk.es.adaptive_response_notable_event module
+  splunk.es.adaptive_response_notable_event:
+    name: "Example notable event from Ansible"
+    correlation_search_name: "Example Correlation Search From Ansible"
+    description: "Example notable event from Ansible, description."
+    state: "present"
+    next_steps:
+      - ping
+      - nslookup
+    recommended_actions:
+      - script
+      - ansiblesecurityautomation
 """
 
 from ansible.module_utils.basic import AnsibleModule

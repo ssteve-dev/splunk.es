@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # https://github.com/ansible/ansible/issues/65816
 # https://github.com/PyCQA/pylint/issues/214
-# pylint: skip-file
 
 # (c) 2018, Adam Miller (admiller@redhat.com)
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -11,21 +10,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
-
 DOCUMENTATION = """
 ---
 module: correlation_search_info
 short_description: Manage Splunk Enterprise Security Correlation Searches
 description:
   - This module allows for the query of Splunk Enterprise Security Correlation Searches
-version_added: "1.0"
+version_added: "1.0.0"
 options:
   name:
     description:
@@ -38,6 +29,14 @@ author: Ansible Security Automation Team (@maxamillion) <https://github.com/ansi
 # FIXME - adaptive response action association is probaby going to need to be a separate module we stitch together in a role
 
 EXAMPLES = """
+- name: Example usage of splunk.es.correlation_search_info
+  splunk.es.correlation_search_info:
+    name: "Name of correlation search"
+  register: scorrelation_search_info
+
+- name: debug display information gathered
+  debug:
+    var: scorrelation_search_info
 """
 
 from ansible.module_utils.basic import AnsibleModule

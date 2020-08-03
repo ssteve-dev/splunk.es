@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # https://github.com/ansible/ansible/issues/65816
 # https://github.com/PyCQA/pylint/issues/214
-# pylint: skip-file
 
 # (c) 2018, Adam Miller (admiller@redhat.com)
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -11,21 +10,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
-
 DOCUMENTATION = """
 ---
 module: data_input_network
 short_description: Manage Splunk Data Inputs of type TCP or UDP
 description:
   - This module allows for addition or deletion of TCP and UDP Data Inputs in Splunk.
-version_added: "1.0"
+version_added: "1.0.0"
 options:
   protocol:
     description:
@@ -138,6 +129,11 @@ author: Ansible Security Automation Team (@maxamillion) <https://github.com/ansi
 """
 
 EXAMPLES = """
+- name: Example adding data input network with splunk.es.data_input_network
+  splunk.es.data_input_network:
+    name: "8099"
+    protocol: "tcp"
+    state: "present"
 """
 
 
